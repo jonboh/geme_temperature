@@ -1,5 +1,5 @@
 with menu;
-with mockup;
+with mockup_interface;
 
 
 procedure geme is

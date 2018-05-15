@@ -1,6 +1,9 @@
 with Ada.Text_IO; use Ada.Text_IO;
+with PCM3712_mock;
+with PCM3718_mock;
 
-package body mockup is 
+
+package body mockup_interface is 
 
    type temp_array is array(0 .. 99) of Float;
     temps : temp_array;
@@ -32,4 +35,4 @@ begin
     
    null;
 
-end mockup;
+end mockup_interface;
