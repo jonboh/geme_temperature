@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Numerics.Float_Random; use Ada.Numerics.Float_Random;
 
 package body PCM3718_mock is
     procedure Configuracion_Inicial(Conexion: String; Canal_Primero: Integer; Canal_Ultimo: Integer; Disparo: String; Numero_Muestras: Integer; Rango: String) is
@@ -8,9 +9,19 @@ package body PCM3718_mock is
     
     function Adquirir return Float is
     rand: Float;
+    
+       function generar_random_float return Float is
+      G:Generator;
+      f_valor_aleatorio_aux,f_valor_aleatorio: Float;
+        begin
+            Reset(G);
+            f_valor_aleatorio_aux:=Random(G);
+            f_valor_aleatorio:=f_valor_aleatorio_aux*5.0;
+            return f_valor_aleatorio;
+        end generar_random_float;
     begin
         put_line("Polling PCM3718...");
-        rand := 23.0;
+        rand := generar_random_float;
         return rand;-- random generator here
     end Adquirir;
 
