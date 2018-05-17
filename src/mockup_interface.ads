@@ -3,5 +3,4 @@ package mockup_interface is
     procedure read_save_temp;
     procedure show_array;
     procedure show_avg_temp;
-    procedure close_mockup;
 end mockup_interface;

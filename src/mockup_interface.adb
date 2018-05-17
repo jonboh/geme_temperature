@@ -40,9 +40,5 @@ package body mockup_interface is
         --length := buffer.leb()
         null;
     end show_avg_temp;
-
-    procedure close_mockup is
-    begin
-        mockup_control.close;
-    end close_mockup;
+    
 end mockup_interface;
