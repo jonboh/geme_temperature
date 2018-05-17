@@ -29,7 +29,7 @@ begin
             --mockup_interface.show_overlevel
          null;
       when '7' =>
-            mockup_interface.close;
+            mockup_interface.close_mockup;
       when others =>
             null;
       end case;
