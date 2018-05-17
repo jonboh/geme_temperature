@@ -1,43 +1,35 @@
+with Ada.Text_IO;
+with Ada.Float_Text_IO;
 with menu;
 with mockup_interface;
 
 
 procedure geme is
-   opcion: Character;
-
-   procedure end_geme is
-   begin
-      null;
-      --Fin_Adquisicion
-   end end_geme;
-
+      opcion: Character;
 begin
-
-   --initialize()
 
    opcion := menu.menu_impl;
 
    case opcion is
       when '1' =>
-         -- heat(temp)
-         null;
+            Ada.Text_IO.Put("Introduzca potencia de calentado (Wats):  ");
+            --mockup_interface.heat(Ada.Float_Text_IO.Get); -- feed user input to heat()
       when '2' =>
-         -- show_temp()
+            mockup_interface.show_temp;
          null;
       when '3' =>
-         -- read_save_temp()
+            mockup_interface.read_save_temp;
          null;
       when '4' =>
-         -- show_array()
+            mockup_interface.show_array;
          null;
       when '5' =>
-         -- show_avg_temp()
-         null;
+            mockup_interface.show_avg_temp;
       when '6' =>
-         -- show_overlevel()
+            --mockup_interface.show_overlevel
          null;
       when '7' =>
-            end_geme;
+            mockup_interface.close;
       when others =>
             null;
       end case;
