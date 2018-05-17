@@ -7,7 +7,7 @@ with mockup_control;
 
 procedure geme is
       opcion: Character;
-      power: Float;
+      power,F_umbral: Float;
 begin
 
       loop--
@@ -27,9 +27,11 @@ begin
             null;
             when '5' =>
                   mockup_interface.show_avg_temp;
-            when '6' =>
-                  --mockup_interface.show_overlevel
-            null;
+         when '6' =>
+                  Ada.Text_IO.Put_line("Introduzca valor umbral: ");
+                  Ada.Float_Text_IO.Get(F_umbral);
+                  mockup_interface.show_overlevel(F_umbral);
+
             when '7' =>
                   mockup_control.close;
             when others =>
