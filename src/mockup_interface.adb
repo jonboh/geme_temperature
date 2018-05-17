@@ -1,48 +1,37 @@
 with Ada.Text_IO; 
 with Ada.Float_Text_IO;
-with PCM3712_mock;
-with PCM3718_mock;
-
+with mockup_control;
+with manejo_buffer;
 
 package body mockup_interface is 
 
-    gain_wats_volt: constant Float := 80.0;
-    type temp_array is array(0 .. 99) of Float;
-    temps : temp_array;
-
-    procedure heat(power: Float) is
-    volts: Float;
-    begin
-        volts := power * gain_wats_volt;
-        PCM3712_mock.Write_ao_PCM3712(volts);
-    end heat;
-
-    function read_temp return Float is
-    temp: Float;
-    begin
-        temp := PCM3718_mock.Adquirir;
-    return temp;
-    end read_temp;
+    type temp_array_type is array(Integer range <>) of Float;
+    temps : temp_array_type(0..24);
+    package buffer_temp is new manejo_buffer(Float,temp_array_type);
 
     procedure show_temp is
+    temp: Float;
     begin
         Ada.Text_IO.Put("Temperatura: ");
-        Ada.Float_Text_IO.Put(read_temp);
+        temp := mockup_control.read_temp;
+        Ada.Float_Text_IO.Put(temp);
     end show_temp;
 
     procedure read_save_temp is
+    temp: Float;
     begin
-        null;
-        -- buffer.add_data(read_temp)
+        temp := mockup_control.read_temp;
+        buffer_temp.guardar_dato(temp, temps);
     end read_save_temp;
     
     procedure show_array is
     length: Integer;
     begin
         Ada.Text_IO.Put_line("Array Temperatura: ");
-        --length = buffer.len()
-        --for i in 0..length loop
-        --    Ada.Float_Text_IO.Put(buffer(i)); 
+        length := buffer_temp.long_buffer;
+        for i in 0..length loop
+            Ada.Float_Text_IO.Put(temps(i)); 
+        end loop;
     end show_array;
 
     procedure show_avg_temp is
@@ -52,14 +41,8 @@ package body mockup_interface is
         null;
     end show_avg_temp;
 
-    procedure close is
+    procedure close_mockup is
     begin
-        PCM3718_mock.Fin_Adquisicion;
-    end close;
-
-begin
-    --ARRAY TEMPERATURA
-    PCM3712_mock.Initialize_PCM3712;
-    --PCM3718_mock.Configuracion_Inicial()
-
+        mockup_control.close;
+    end close_mockup;
 end mockup_interface;
