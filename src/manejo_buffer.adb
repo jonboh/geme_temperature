@@ -18,8 +18,10 @@ package body manejo_buffer is
         if long_buffer<max_length then
             long_buffer:=long_buffer+1;
         else
-            Ada.Text_IO.Put_Line("Atencion! El buffer esta lleno!");
-        end if; 
+         Ada.Text_IO.Put_Line("Atencion! El buffer esta lleno!");
+         Ada.Text_IO.Put_Line("Reseteando Buffer...");
+         resetear_buffer;
+        end if;
         array_buffer(long_buffer):=elem_buffer;
 
    end guardar_dato;
