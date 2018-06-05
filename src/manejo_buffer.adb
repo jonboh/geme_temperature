@@ -13,7 +13,7 @@ package body manejo_buffer is
    begin
         if max_length=-1 then
             Ada.Text_IO.Put_Line("Buffer no inicializado!");
-            --rajse Error
+            raise Constraint_Error;
         end if;
         if long_buffer<max_length then
             long_buffer:=long_buffer+1;
