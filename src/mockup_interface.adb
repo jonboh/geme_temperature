@@ -45,9 +45,8 @@ package body mockup_interface is
             F_temp_aux:=temps(i)+F_temp_aux;
       end loop;
       F_temp_media:=F_temp_aux/F_length;
-      Ada.Text_IO.Put_line("Temperatura media: ");
-      Ada.Float_Text_IO.Put(F_temp_media,0,2,0);Ada.Text_IO.New_Line;
-        null;
+      Ada.Text_IO.Put("Temperatura media: ");
+      Ada.Float_Text_IO.Put(F_temp_media,0,2,0);Ada.Text_IO.Put(" C ");Ada.Text_IO.New_Line;
    end show_avg_temp;
 
    procedure show_overlevel(F_umbral: in Float) is
